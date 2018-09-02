@@ -11,6 +11,7 @@ const messageWebhookController = require('./controllers/messageWebhook');
 app.get('/', verificationController);
 app.post('/', messageWebhookController);
 
+/*
 app.post('/webhook', (req, res) => {
     let body = req.body;
     if (body.object === 'page') {
@@ -51,3 +52,4 @@ app.get('/webhook', (req, res) => {
       }
     }
   });
+  */
