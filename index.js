@@ -23,7 +23,7 @@ app.post('/webhook', (req, res) => {
 app.get('/webhook', (req, res) => {
 
     // Your verify token. Should be a random string.
-    let VERIFY_TOKEN = "IAMYOURDADDY"
+    let VERIFY_TOKEN = process.env.FB_BOT_API;
       
     // Parse the query params
     let mode = req.query['hub.mode'];
