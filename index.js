@@ -6,6 +6,11 @@ const
 
 app.listen(process.env.PORT || 1337, () => console.log('Webhook is listening...'));
 
+const verificationController = require('./controllers/verification');
+const messageWebhookController = require('./controllers/messageWebhook');
+app.get('/', verificationController);
+app.post('/', messageWebhookController);
+
 app.post('/webhook', (req, res) => {
     let body = req.body;
     if (body.object === 'page') {
