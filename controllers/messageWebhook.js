@@ -1,3 +1,5 @@
+const logger = require('heroku-logger');
+
 const API_AI_TOKEN = process.env.API_AI_TOKEN;
 const apiAiClient = require('apiai')(API_AI_TOKEN);
 const FACEBOOK_ACCESS_TOKEN = process.env.FB_BOT_API;
@@ -22,14 +24,14 @@ const sendTextMessage = (senderId, text) => {
 module.exports = (event) => {
         const senderId = event.sender.id;
         const message = event.message.text;
-        console.log("AI request message >> ", message);
+        logger.info("AI request message >> ", message);
         const apiaiSession = apiAiClient.textRequest(message, {
                     sessionId: 'crowdbotics_bot'});
                     apiaiSession.on('response', (response) => {
                         const result = response.result.fulfillment.speech; 
-                        console.log("AI response result >> ", result);
+                        logger.info("AI response result >> ", result);
                         sendTextMessage(senderId, result);
                     }); 
-                    apiaiSession.on('error', error => console.log("ERROR: AI request >> ", error));
+                    apiaiSession.on('error', error => logger.info("ERROR: AI request >> ", error));
                     apiaiSession.end();
                 };
