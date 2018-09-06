@@ -22,6 +22,7 @@ const sendTextMessage = (senderId, text) => {
 module.exports = (event) => {
         const senderId = event.sender.id;
         const message = event.message.text;
+        console.log("AI request message >> ", message);
         const apiaiSession = apiAiClient.textRequest(message, {
                     sessionId: 'crowdbotics_bot'});
                     apiaiSession.on('response', (response) => {
