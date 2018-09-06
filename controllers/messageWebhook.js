@@ -25,8 +25,10 @@ module.exports = (event) => {
         const apiaiSession = apiAiClient.textRequest(message, {
                     sessionId: 'crowdbotics_bot'});
                     apiaiSession.on('response', (response) => {
-                        const result = response.result.fulfillment.speech; sendTextMessage(senderId, result);
+                        const result = response.result.fulfillment.speech; 
+                        console.log("AI response result >> ", result);
+                        sendTextMessage(senderId, result);
                     }); 
-                    apiaiSession.on('error', error => console.log(error));
+                    apiaiSession.on('error', error => console.log("ERROR: AI request >> ", error));
                     apiaiSession.end();
                 };
